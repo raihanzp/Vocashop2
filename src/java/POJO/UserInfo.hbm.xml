@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 21, 2020 8:36:46 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJO.UserInfo" table="user_info" catalog="vocashop" optimistic-lock="version">
+        <id name="userId" type="java.lang.Integer">
+            <column name="user_id" />
+            <generator class="identity" />
+        </id>
+        <property name="email" type="string">
+            <column name="email" length="1111" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="1111" not-null="true" />
+        </property>
+        <property name="nama" type="string">
+            <column name="nama" length="1111" not-null="true" />
+        </property>
+        <property name="type" type="string">
+            <column name="type" length="11" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

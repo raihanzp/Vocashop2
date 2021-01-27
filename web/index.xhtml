@@ -1,0 +1,984 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Voca Shop</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<!-- Template styles-->
+	<link rel="stylesheet" href="css/style.css"/>
+	<!-- Responsive styles-->
+	<link rel="stylesheet" href="css/responsive.css"/>
+	<!-- FontAwesome -->
+	<link rel="stylesheet" href="css/font-awesome.min.css"/>
+	<!-- Animation -->
+	<link rel="stylesheet" href="css/animate.css"/>
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="css/owl.carousel.min.css"/>
+	<link rel="stylesheet" href="css/owl.theme.default.min.css"/>
+	<!-- Colorbox -->
+	<link rel="stylesheet" href="css/colorbox.css"/>
+        <script type="text/javascript">
+            function toggleRegister(){
+              document.getElementById('register').addEventListener('click', function(){
+                 document.querySelector('.muncul').style.display = 'flex'; 
+              })
+            }
+            function toggleClose(){
+              document.getElementById('close').addEventListener('click', function(){
+                 document.querySelector('.muncul').style.display = 'none'; 
+              })
+            }
+            function toggleSignin(){
+              document.getElementById('signin').addEventListener('click', function(){
+                 document.querySelector('.signinmuncul').style.display = 'flex'; 
+              })
+            }
+            function toggleClosesignin(){
+              document.getElementById('closesignin').addEventListener('click', function(){
+                 document.querySelector('.signinmuncul').style.display = 'none'; 
+              })
+            }
+        </script>
+
+    </h:head>
+    <h:body>
+        <div>
+        <div class="body-inner">
+		<!--/ Topbar end -->
+
+		<!-- Header start -->
+		<header id="header" class="header-one">
+			<div class="container">
+				<div class="row">
+					<div class="logo-area clearfix">
+						<div class="logo col-xs-12 col-md-3">
+							<a href="index.xhtml">
+								<h:graphicImage value="images/logo1.jpg" alt=""/>
+							</a>
+						</div><!-- logo end -->
+                                                <h:panelGroup rendered="#{empty nama}">
+						<div class="col-xs-12 col-md-9 header-right">
+							<ul class="top-info-box">
+								<li class="header-get-a-quote">
+                                                                    <a class="btn btn-primary" onclick="toggleSignin()" id="signin" href="#">Sign In</a>
+								</li>
+                                                                <li class="header-get-a-quote">
+									<a class="btn btn-primary" onclick="toggleRegister()" id="register" href="#">Register</a>
+								</li>
+							</ul><!-- Ul end -->
+						</div>
+                                                </h:panelGroup>
+                                                
+                                                <h:panelGroup rendered="#{not empty nama}">
+						<div class="col-xs-12 col-md-9 header-right">
+							<ul class="top-info-box">
+								<li class="header-get-a-quote">
+                                                                    <a class="btn btn-primary">Welcome, #{nama}</a>
+								</li>
+                                                            <h:panelGroup rendered="#{not empty type}">
+                                                            <li class="header-get-a-quote">
+                                                                <h:form id="adminroom">
+                                                                <h:commandButton value="Admin" class="btn btn-primary" action="adminroom.xhtml"/>&nbsp;
+                                                                </h:form>
+                                                            </li>
+                                                            </h:panelGroup>
+                                                            <li class="header-get-a-quote">
+                                                                <h:form id="orderlist">
+                                                                    <h:commandButton value="Order" class="btn btn-primary" action="userorder.xhtml"/>&nbsp;
+                                                                </h:form>
+                                                            </li>
+                                                            <li class="header-get-a-quote">
+                                                                <h:form id="logout">
+                                                                <h:commandButton value="Log Out" class="btn btn-primary" action="#{userInfo.logout()}"/>&nbsp;
+                                                                </h:form>
+								</li>
+                                                            
+							</ul><!-- Ul end -->
+						</div>
+                                                </h:panelGroup><!-- header right end -->
+					</div><!-- logo area end -->
+
+				</div><!-- Row end -->
+			</div><!-- Container end -->
+                        <h:form>
+			<nav class="site-navigation navigation navdown">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="site-nav-inner pull-left">
+								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+									<span class="sr-only">Toggle navigation</span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+
+								<div class="collapse navbar-collapse navbar-responsive-collapse">
+									<ul class="nav navbar-nav">
+										<li><a href="index.xhtml">Home</a></li>
+
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown">Voucher/Card<i class="fa fa-angle-down"></i></a>
+											<ul class="dropdown-menu" role="menu">
+                                                                                                        <li><a href="garena.xhtml">Garena</a></li>
+                                                                                                        <li><a href="gplay.xhtml">Google Play</a></li>
+                                                                                                        <li><a href="steam.xhtml">Steam Wallet</a></li>
+                                                                                                      
+											</ul>
+										</li>
+
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown">Top Up<i class="fa fa-angle-down"></i></a>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="ml.xhtml">Mobile Legend</a></li>
+                                                                                                <li><a href="codm.xhtml">COD Mobile</a></li>
+                                                                                                <li><a href="gi.xhtml">Genshin Impact</a></li>
+                                                                                                <li><a href="valorant.xhtml">Valorant</a></li>
+                                                                                                <li><a href="ff.xhtml">Free Fire</a></li>
+                                                                                                <li><a href="pubgm.xhtml">PUBGM</a></li>
+											</ul>
+										</li>
+
+
+
+                                                                                <li>
+                                                                                    <a href="listnews.xhtml">News </a>
+													
+										</li>
+
+										<li><a href="contact.xhtml">Contact</a></li>
+
+									</ul>
+									<!--/ Nav ul end -->
+								</div>
+								<!--/ Collapse end -->
+
+							</div><!-- Site Navbar inner end -->
+
+						</div>
+						<!--/ Col end -->
+					</div>
+					<!--/ Row end -->
+
+					<div class="nav-search">
+						<span id="search"><i class="fa fa-search"></i></span>
+					</div><!-- Search end -->
+
+					<div class="search-block" style="display: none;">
+						<h:inputText class="form-control" a:placeholder="Type what you want and enter"/>
+						<span class="search-close">&times;</span>
+					</div><!-- Site search end -->
+				</div>
+				<!--/ Container end -->
+
+			</nav>
+                        </h:form>
+			<!--/ Navigation end -->
+		</header>
+		<!--/ Header end -->
+
+		<!-- Carousel -->
+                <h:form>
+		<div id="main-slide" class="carousel slide" data-ride="carousel">
+
+			<!-- Indicators -->
+			<ol class="carousel-indicators visible-lg visible-md">
+				<li data-target="#main-slide" data-slide-to="0" class="active"></li>
+				<li data-target="#main-slide" data-slide-to="1"></li>
+				<li data-target="#main-slide" data-slide-to="2"></li>
+			</ol>
+			<!--/ Indicators end-->
+
+			<!-- Carousel inner -->
+			<div class="carousel-inner">
+
+				<div class="item active" style="background-image:url(images/slider-main/bg1.jpg)">
+					<div class="slider-content">
+						<div class="col-md-12 text-center">
+							<h2 class="slide-title animated4">Steam Wallet untuk beli skin DOTA 2</h2>
+							<h3 class="slide-sub-title animated5">MURAH MERIAH !!!</h3>
+							<p>
+								<a href="steam.xhtml" class="slider btn btn-primary">Get it Now</a>
+
+							</p>
+						</div>
+					</div>
+				</div>
+				<!--/ Carousel item 1 end -->
+
+				<div class="item" style="background-image:url(images/slider-main/bg2.jpg)">
+					<div class="slider-content text-left">
+						<div class="col-md-12">
+							<h2 class="slide-title-box animated2">World Class Service</h2>
+							<h3 class="slide-title animated3">Top Up Riot Point</h3>
+							<h3 class="slide-sub-title animated3">Skill jago masa ga punya skin</h3>
+							<p class="animated3">
+								<a href="valorant.xhtml" class="slider btn btn-primary border">Grab it</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<!--/ Carousel item 2 end -->
+
+				<div class="item" style="background-image:url(images/slider-main/bg3.jpg)">
+					<div class="slider-content text-right">
+						<div class="col-md-12">
+			
+							<h3 class="slide-sub-title animated7">FF PLAYER WAJIB BELI SKIN</h3>
+							<p class="slider-description lead animated7">Garena Voucher</p>
+							<p>
+								
+								<a href="garena.xhtml" class="slider btn btn-primary border">Buy</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<!--/ Carousel item 3 end -->
+
+			</div><!-- Carousel inner end-->
+
+			<!-- Controllers -->
+			<a class="left carousel-control" href="#main-slide" data-slide="prev">
+				<span><i class="fa fa-angle-left"></i></span>
+			</a>
+			<a class="right carousel-control" href="#main-slide" data-slide="next">
+				<span><i class="fa fa-angle-right"></i></span>
+			</a>
+		</div>
+                    
+                </h:form>
+		<!--/ Carousel end -->
+
+
+		<section class="call-to-action-box no-padding">
+			<div class="container">
+				<div class="action-style-box">
+					<div class="row">
+						<div class="col-md-10">
+							<div class="call-to-action-text">
+								<h3 class="action-title">TOP UP JADI LEBIH MUDAH</h3>
+							</div>
+						</div><!-- Col end -->
+						<div class="col-md-2">
+							<div class="call-to-action-btn">
+								<a class="btn btn-dark" href="#"></a>
+							</div>
+						</div><!-- col end -->
+					</div><!-- row end -->
+				</div><!-- Action style box -->
+			</div>
+                <!-- Container end -->
+		</section>
+                
+                                                                 <!-- Action end -->
+
+		<section id="ts-features" class="ts-features">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-xs-12">
+						<div class="ts-intro">
+							<h2 class="into-title">About Us</h2>
+							<h3 class="into-sub-title">VocaShop Fastest and Safest Top Up/Voucher Game Shop</h3>
+							<p>Every day we serve several customers quickly on every order and are safe in their transactions, and lots of players buy vouchers on our website, for example mobile legend, free fire, pubg, etc.</p>
+						</div><!-- Intro box end -->
+
+						<div class="gap-20"></div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="ts-service-box">
+									<span class="ts-service-icon">
+										<i class="fa fa-trophy"></i>
+									</span>
+									<div class="ts-service-box-content">
+										<h3 class="service-box-title">Best Voucher Game Shop</h3>
+									</div>
+								</div><!-- Service 1 end -->
+							</div><!-- col end -->
+
+							<div class="col-md-6">
+								<div class="ts-service-box">
+									<span class="ts-service-icon">
+										<i class="fa fa-sliders"></i>
+									</span>
+									<div class="ts-service-box-content">
+										<h3 class="service-box-title">Fast and Safe Transaction</h3>
+									</div>
+								</div><!-- Service 2 end -->
+							</div><!-- col end -->
+						</div><!-- Content row 1 end -->
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="ts-service-box">
+									<span class="ts-service-icon">
+										<i class="fa fa-thumbs-up"></i>
+									</span>
+									<div class="ts-service-box-content">
+										<h3 class="service-box-title">Good Feedback from Customers</h3>
+									</div>
+								</div><!-- Service 1 end -->
+							</div><!-- col end -->
+
+							<div class="col-md-6">
+								<div class="ts-service-box">
+									<span class="ts-service-icon">
+										<i class="fa fa-users"></i>
+									</span>
+									<div class="ts-service-box-content">
+										<h3 class="service-box-title">E-Sport Team Partnership</h3>
+									</div>
+								</div><!-- Service 2 end -->
+							</div><!-- col end -->
+						</div><!-- Content row 1 end -->
+					</div><!-- Col end -->
+
+					<div class="col-md-6 col-xs-12">
+
+						<div class="panel-group" id="accordion">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Safety</a>
+									</h4>
+								</div>
+								<div id="collapseOne" class="panel-collapse collapse in">
+									<div class="panel-body">
+										<p>Transaction with High Safety and Fast Responsibility</p>
+									</div>
+								</div>
+							</div>
+							<!--/ Panel 1 end-->
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseTwo"> Customer
+											Service</a>
+									</h4>
+								</div>
+								<div id="collapseTwo" class="panel-collapse collapse">
+									<div class="panel-body">
+										<p>For now our Customer Services in Maintenance</p>
+									</div>
+								</div>
+							</div>
+							<!--/ Panel 2 end-->
+
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseThree">
+											Discount</a>
+									</h4>
+								</div>
+								<div id="collapseThree" class="panel-collapse collapse">
+									<div class="panel-body">
+										<p>Sometimes we Give some Discount for each Category</p>
+									</div>
+								</div>
+							</div>
+							<!--/ Panel 3 end-->
+
+						</div>
+						<!--/ Accordion end -->
+
+					</div><!-- Col end -->
+				</div><!-- Row end -->
+			</div><!-- Container end -->
+		</section><!-- Feature are end -->
+
+		
+
+		 
+
+		<section id="project-area" class="project-area solid-bg">
+			<div class="container">
+				<div class="row text-center">
+					<h2 class="section-title">Most Category</h2>
+					<h3 class="section-sub-title">Voucher Game List</h3>
+				</div>
+				<!--/ Title row end -->
+
+				<div class="row">
+					<div class="isotope-nav" data-isotope-nav="isotope">
+						<ul>
+							<li><a href="#" class="active" data-filter="*">Most Popular</a></li>
+							<li><a href="#" data-filter=".bestdtu">Best Direct Top Up</a></li>
+							<li><a href="#" data-filter=".bestseller">Best Seller</a></li>
+							<li><a href="#" data-filter=".giftcards">Gift Cards</a></li>
+							<li><a href="#" data-filter=".specialdeals">Special Deals</a></li>
+						</ul>
+					</div><!-- Isotope filter end -->
+
+
+					<div id="isotope" class="isotope">
+						<div class="col-md-4 col-sm-6 col-xs-12 bestdtu bestseller isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/mllogo.jpg">
+									<h:graphicImage class="img-responsive" value="images/projects/mllogo.jpg" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="ml.xhtml">Mobile Legends</a>
+										</h3>
+										<p class="project-cat">Diamonds</p>
+									</div>
+								</div>
+							</div>
+						</div><!-- Isotope item 1 end -->
+
+						<div class="col-md-4 col-sm-6 col-xs-12 bestdtu isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/codmlogo.jpg">
+									<h:graphicImage class="img-responsive" value="images/projects/codmlogo.jpg" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="codm.xhtml">COD Mobile</a>
+										</h3>
+										<p class="project-cat">Top Up</p>
+									</div>
+								</div>
+							</div>
+						</div><!-- Isotope item 2 end -->
+
+						<div class="col-md-4 col-sm-6 col-xs-12 bestdtu bestseller isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/valorantlogo.jpg">
+									<h:graphicImage class="img-responsive" value="images/projects/valorantlogo.jpg" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="valorant.xhtml">Valorant</a>
+										</h3>
+										<p class="project-cat">Riot Point</p>
+									</div>
+								</div>
+							</div>
+						</div><!-- Isotope item 3 end -->
+
+						<div class="col-md-4 col-sm-6 col-xs-12 bestdtu specialdeals isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/fflogo.png">
+									<h:graphicImage class="img-responsive" value="images/projects/fflogo.png" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="ff.xhtml">Free Fire</a>
+										</h3>
+										<p class="project-cat">Top Up</p>
+									</div>
+								</div>
+							</div>
+						</div><!-- Isotope item 4 end -->
+
+						<div class="col-md-4 col-sm-6 col-xs-12 bestdtu bestseller isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/pubgmlogo.png">
+									<h:graphicImage class="img-responsive" value="images/projects/pubgmlogo.png" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="pubgm.xhtml">PUBG Mobile</a>
+										</h3>
+										<p class="project-cat">UC</p>
+									</div>
+								</div>
+							</div>
+						</div><!-- Isotope item 5 end -->
+
+						<div class="col-md-4 col-sm-6 col-xs-12 giftcards bestseller isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/steamlogo.jpg">
+									<h:graphicImage class="img-responsive" value="images/projects/steamlogo.jpg" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="steam.xhtml">Steam Wallet</a>
+										</h3>
+										<p class="project-cat">Steam Wallet Code</p>
+									</div>
+								</div>
+							</div>
+						</div>
+                                                <!-- Isotope item 6 end -->
+                                                <div class="col-md-4 col-sm-6 col-xs-12 specialdeals isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/ragnaroklogo.jpg">
+									<h:graphicImage class="img-responsive" value="images/projects/ragnaroklogo.jpg" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="projects-single.html">Ragnarok M : Eternal love</a>
+										</h3>
+										<p class="project-cat">Top Up</p>
+									</div>
+								</div>
+							</div>
+						</div>
+                                                
+                                                <div class="col-md-4 col-sm-6 col-xs-12 bestdtu isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/pblogo.jpg">
+									<h:graphicImage class="img-responsive" value="images/projects/pblogo.jpg" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="projects-single.html">Point Blank</a>
+										</h3>
+										<p class="project-cat">Top Up</p>
+									</div>
+								</div>
+							</div>
+						</div>
+                                                
+                                                <div class="col-md-4 col-sm-6 col-xs-12 specialdeals isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/aovlogo.png">
+									<h:graphicImage class="img-responsive" value="images/projects/aovlogo.png" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="projects-single.html">Arena Of Valor</a>
+										</h3>
+										<p class="project-cat">Top Up</p>
+									</div>
+								</div>
+							</div>
+						</div>
+                                                <div class="col-md-4 col-sm-6 col-xs-12 specialdeals isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/wodnlogo.jpg">
+									<h:graphicImage class="img-responsive" value="images/projects/wodnlogo.jpg" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="projects-single.html">World of Dragon Nest</a>
+										</h3>
+										<p class="project-cat">Top Up</p>
+									</div>
+								</div>
+							</div>
+						</div>
+                                                <div class="col-md-4 col-sm-6 col-xs-12 specialdeals isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/rostlogo.jpg">
+									<h:graphicImage class="img-responsive" value="images/projects/roslogo.jpg" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="projects-single.html">Rules Of Survival</a>
+										</h3>
+										<p class="project-cat">Top Up</p>
+									</div>
+								</div>
+							</div>
+						</div>
+                                                <div class="col-md-4 col-sm-6 col-xs-12 bestdtu bestseller isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/gilogo.png">
+									<h:graphicImage class="img-responsive" value="images/projects/gilogo.png" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="gi.xhtml">Genshin Impact</a>
+										</h3>
+										<p class="project-cat">Top Up</p>
+									</div>
+								</div>
+							</div>
+						</div>
+                                                <div class="col-md-4 col-sm-6 col-xs-12  isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/lalogo.png">
+									<h:graphicImage class="img-responsive" value="images/projects/lalogo.png" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="projects-single.html">Life After</a>
+										</h3>
+										<p class="project-cat">Top Up</p>
+									</div>
+								</div>
+							</div>
+						</div>
+                                                
+                                                <div class="col-md-4 col-sm-6 col-xs-12 specialdeals isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/dragonrajalogo.png">
+									<h:graphicImage class="img-responsive" value="images/projects/dragonrajalogo.png" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="projects-single.html">Dragon Raja</a>
+										</h3>
+										<p class="project-cat">Top Up</p>
+									</div>
+								</div>
+							</div>
+						</div>
+                                                 <div class="col-md-4 col-sm-6 col-xs-12 specialdeals isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/laplacelogo.jpg">
+									<h:graphicImage class="img-responsive" value="images/projects/laplacelogo.jpg" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="projects-single.html">Laplace</a>
+										</h3>
+										<p class="project-cat">Top Up</p>
+									</div>
+								</div>
+							</div>
+						</div>
+                                                
+                                                <div class="col-md-4 col-sm-6 col-xs-12 giftcards isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/blizzardlogo.png">
+									<h:graphicImage class="img-responsive" value="images/projects/blizzardlogo.png" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="projects-single.html">Blizzard</a>
+										</h3>
+										<p class="project-cat">Gift Cards</p>
+									</div>
+								</div>
+							</div>
+						</div> 
+                                                <div class="col-md-4 col-sm-6 col-xs-12 giftcards isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/gemscoollogo.jpg">
+									<h:graphicImage class="img-responsive" value="images/projects/gemscoollogo.jpg" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="projects-single.html">Gemscool</a>
+										</h3>
+										<p class="project-cat">Voucher Game</p>
+									</div>
+								</div>
+							</div>
+						</div>
+                                                 <div class="col-md-4 col-sm-6 col-xs-12 giftcards isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/garenalogo.jpg">
+									<h:graphicImage class="img-responsive" value="images/projects/garenalogo.jpg" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="garena.xhtml">Garena</a>
+										</h3>
+										<p class="project-cat">Voucher Game</p>
+									</div>
+								</div>
+							</div>
+						</div>
+                                                <div class="col-md-4 col-sm-6 col-xs-12 giftcards isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/megaxuslogo.jpg">
+									<h:graphicImage class="img-responsive" value="images/projects/megaxuslogo.jpg" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="projects-single.html">Megaxus</a>
+										</h3>
+										<p class="project-cat">Voucher Game</p>
+									</div>
+								</div>
+							</div>
+						</div>
+                                                <div class="col-md-4 col-sm-6 col-xs-12 giftcards isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/wavegamelogo.png">
+									<h:graphicImage class="img-responsive" value="images/projects/wavegamelogo.png" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="projects-single.html">Wave Game</a>
+										</h3>
+										<p class="project-cat">Voucher Game</p>
+									</div>
+								</div>
+							</div>
+						</div>
+                                                
+                                                <div class="col-md-4 col-sm-6 col-xs-12 giftcards bestseller isotope-item">
+							<div class="isotope-img-container">
+								<a class="gallery-popup" href="images/projects/gplogo.png">
+									<h:graphicImage class="img-responsive" value="images/projects/gplogo.png" alt=""/>
+									<span class="gallery-icon"><i class="fa fa-plus"></i></span>
+								</a>
+								<div class="project-item-info">
+									<div class="project-item-info-content">
+										<h3 class="project-item-title">
+											<a href="gplay.xhtml">Google Play</a>
+										</h3>
+										<p class="project-cat">Gift Cards</p>
+									</div>
+								</div>
+							</div>
+						</div>
+                                                
+                                                
+                                                
+                                                
+                                                 
+                                                
+					</div><!-- Isotop end -->
+
+
+				</div><!-- Content row end -->
+			</div>
+			<!--/ Container end -->
+		</section>
+                <!-- Project area end -->
+
+
+		
+
+		
+                <h:form>
+		<footer id="footer" class="footer bg-overlay">
+			<div class="footer-main">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4 col-sm-12 footer-widget footer-about">
+							<h3 class="widget-title">About Us</h3>
+							<h:graphicImage class="footer-logo" value="images/logo2.jpg" alt="" />
+							<p>Every day we serve several customers quickly on every order and are safe in their transactions, and lots of players buy vouchers on our website, for example mobile legend, free fire, pubg, etc.</p>
+							<div class="footer-social">
+								<ul>
+									<li><a href="https://www.facebook.com/ajgneed/"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="https://www.instagram.com/imamfachrial/"><i class="fa fa-instagram"></i></a></li>
+								</ul>
+							</div><!-- Footer social end -->
+						</div><!-- Col end -->
+
+						<div class="col-md-4 col-sm-12 footer-widget">
+							<h3 class="widget-title">OUR SERVICES</h3>
+							<div class="working-hours">
+                                                            <li>DIRECT TOP UP</li>
+                                                            <li>NEWS</li>
+                                                            <li>VOUCHER GAME</li>
+                                                            <li>GIFT CARDS</li>
+								
+							</div>
+						</div><!-- Col end -->
+
+						<div class="col-md-4 col-sm-12 footer-widget">
+							<h3 class="widget-title">ABOUT US</h3>
+							<ul class="list-arrow">
+								<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0336957191926!2d106.82512361556063!3d-6.259291895469396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f22d2296c873%3A0x63c9cf0fcac4b538!2sGrhatama%20Home!5e0!3m2!1sid!2sid!4v1603652131125!5m2!1sid!2sid" width="300" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" align="center"></iframe>
+								
+							</ul>
+						</div><!-- Col end -->
+
+
+					</div><!-- Row end -->
+				</div><!-- Container end -->
+			</div><!-- Footer main end -->
+
+			<div class="copyright">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12 col-sm-6">
+							<div class="copyright-info">
+								<span>Copyright © 2020 CCIT - FTUI</span>
+							</div>
+						</div>
+
+						<div class="col-xs-12 col-sm-6">
+							<div class="footer-menu">
+								<ul class="nav unstyled">
+									<li><a href="about.html">About</a></li>
+									<li><a href="team.html">Our people</a></li>
+									<li><a href="faq.html">Faq</a></li>
+									<li><a href="news-left-sidebar.html">Blog</a></li>
+									<li><a href="pricing.html">Pricing</a></li>
+								</ul>
+							</div>
+						</div>
+					</div><!-- Row end -->
+
+					<div id="back-to-top" data-spy="affix" data-offset-top="10" class="back-to-top affix">
+						<button class="btn btn-primary" title="Back to Top">
+							<i class="fa fa-angle-double-up"></i>
+						</button>
+					</div>
+
+				</div><!-- Container end -->
+			</div><!-- Copyright end -->
+
+		</footer>
+                </h:form><!-- Footer end -->
+
+
+		<!-- Javascript Files
+	================================================== -->
+
+		<!-- initialize jQuery Library -->
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<!-- Bootstrap jQuery -->
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<!-- Owl Carousel -->
+		<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+		<!-- Color box -->
+		<script type="text/javascript" src="js/jquery.colorbox.js"></script>
+		<!-- Isotope -->
+		<script type="text/javascript" src="js/isotope.js"></script>
+		<script type="text/javascript" src="js/ini.isotope.js"></script>
+                <script type="text/javascript" src="js/popup.js"></script>
+
+
+
+    <!-- Google Map API Key-->
+		
+		<!-- Google Map Plugin-->
+		<script type="text/javascript" src="js/gmap3.js"></script>
+ 
+	 <!-- Template custom -->
+	 <script type="text/javascript" src="js/custom.js"></script>
+
+	</div>
+        </div>
+        <div class="muncul">
+                <div class="muncul-content">
+                    
+			
+				<div class="row text-center" style="margin-top: 50px">
+					<h3 class="section-sub-title">Register</h3>
+				</div>
+                                <div class="gap-20"></div>
+            <h:form id="register">
+             <div class="form-group">
+             <label for="Name">Name</label>  
+             <f:ajax event="keyup" render="nameError">
+                        <h:inputText id="n" class="form-control"  value="#{userInfo.nama}" required="true" requiredMessage="You must enter the first name"/>
+                        <h:message for="n" id="nameError" style="color:red"/>
+                         </f:ajax>
+             </div>
+                <div class="form-group">
+              <label for="Email id">Email</label>
+              <f:ajax event="keyup" render="emailError">
+                  <h:inputText id="email"  class="form-control" value="#{userInfo.email}"  required="true" requiredMessage="You must enter the email id" validator="#{userInfo.validateEmail}" validatorMessage="Invalid Email ID"/>
+                <h:message for="email" id="emailError" style="color:red"/>
+              </f:ajax>
+                </div>
+             <div class="form-group">
+                 <label for="">Password</label>
+                    <f:ajax event="keyup" render="passError">
+                        <h:inputSecret id="pwd" class="form-control" value="#{userInfo.password}" required="true" requiredMessage="You must enter the password" validatorMessage="Password must be minimum 5 characters long" validator="#{userInfo.validateFinalPassword}">
+                        <f:validateLength minimum="5"/>
+                        </h:inputSecret>
+                        <h:message for="pwd" id="passError" style="color:red"/>
+                        </f:ajax>
+                 <h:message for="pwd" style="color:red"/>
+             </div>
+                 <div class="form-group">
+                     
+                <label for="confirm">Confirm Password</label>
+                <f:ajax event="keyup" render="cpassError">
+                <h:inputSecret id="confirm" class="form-control" value="#{userInfo.confirmPassword}" required="true" requiredMessage="You must confirm the password" validator="#{userInfo.validateCPassword}"/>
+                <h:message for="confirm" id="cpassError" style="color:red"/>
+                </f:ajax>
+            </div>
+             
+                <div class="row text-center">
+                <h:commandButton value="Confirm" class="btn btn-primary" action="#{userInfo.save()}"/>
+                </div>
+               
+            </h:form>
+                                <div class="gap-40"></div>
+                       <div class="close" onclick="toggleClose()" id="close">
+                           <h:graphicImage value="images/banner/close.png" alt=""/>
+                       </div>
+               </div>
+            </div>
+        
+        <div class="signinmuncul">
+                <div class="signinmuncul-content">
+                    
+			
+				<div class="row text-center" style="margin-top: 50px">
+					<h3 class="section-sub-title">Sign In</h3>
+				</div>
+                                <div class="gap-20"></div>
+                               <h:form id="login">
+            
+                <div class="form-group">
+                    <label for="userid">Email</label>
+                    <f:ajax event="keyup" render="lEmail">
+                    <h:inputText id="logemail" class="form-control" value="#{userInfo.email}" required="true" requiredMessage="You must enter the email"/>
+                    <h:message for="logemail" id="lEmail" style="color:red;font-style: italic"/>
+                    </f:ajax>
+                </div>
+                <div class="form-group">
+                    <label for="pass">Password</label>
+                    <f:ajax event="keyup" render="lPassword">
+                    <h:inputSecret id="logpass" class="form-control" value="#{userInfo.password}" required="true" requiredMessage="You must enter the password"/>
+                    <h:message for="logpass" id="lPassword" style="color:red;font-style: italic"/>
+                    </f:ajax>
+                </div>
+                <div class="form-group">
+                    <h:commandButton value="Confirm" class="btn btn-primary" action="#{userInfo.validatelogin()}"/>&nbsp;
+                </div>
+            </h:form>
+                  <div class="gap-40"></div>
+                            
+                 
+                       <div class="close" onclick="toggleClosesignin()" id="closesignin">
+                           <h:graphicImage value="images/banner/close.png" alt=""/>
+                       </div>
+               </div>
+            </div>
+       
+    </h:body>
+</html>
+

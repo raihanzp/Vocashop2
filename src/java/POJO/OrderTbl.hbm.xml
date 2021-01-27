@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 21, 2020 8:36:46 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJO.OrderTbl" table="order_tbl" catalog="vocashop" optimistic-lock="version">
+        <id name="orderId" type="java.lang.Integer">
+            <column name="order_id" />
+            <generator class="identity" />
+        </id>
+        <property name="userId" type="int">
+            <column name="user_id" not-null="true" />
+        </property>
+        <property name="vocId" type="int">
+            <column name="voc_id" not-null="true" />
+        </property>
+        <property name="vocCode" type="java.lang.Integer">
+            <column name="voc_code" />
+        </property>
+        <property name="date" type="date">
+            <column name="date" length="10" />
+        </property>
+        <property name="vocPrice" type="int">
+            <column name="voc_price" not-null="true" />
+        </property>
+        <property name="payment" type="string">
+            <column name="payment" length="111" not-null="true" />
+        </property>
+        <property name="orderStatus" type="string">
+            <column name="order_status" length="1111" />
+        </property>
+    </class>
+</hibernate-mapping>

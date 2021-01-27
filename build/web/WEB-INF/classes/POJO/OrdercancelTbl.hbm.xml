@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 21, 2020 8:36:46 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJO.OrdercancelTbl" table="ordercancel_tbl" catalog="vocashop" optimistic-lock="version">
+        <id name="ordercancelId" type="java.lang.Integer">
+            <column name="ordercancel_id" />
+            <generator class="identity" />
+        </id>
+        <property name="orderId" type="int">
+            <column name="order_id" not-null="true" />
+        </property>
+        <property name="reason" type="string">
+            <column name="reason" length="1111" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
